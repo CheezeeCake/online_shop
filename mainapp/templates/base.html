@@ -58,7 +58,13 @@
 
         <div class="col-lg-9">
           {% block content %}
-
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+              </div>
+            {% endfor %}
+          {% endif %}
           <div class="row">
             {% for product in products %}
             <div class="col-lg-4 col-md-6 mb-4">
