@@ -102,9 +102,6 @@ class Product(models.Model):
     def get_model_name(self):
         return self.__class__.__name__.lower()
 
-    # def get_absolute_url(self):
-    #     return reverse("product_detail", kwargs={'slug':str(self.slug)})
-
 
 class Notebook(Product):
 
@@ -114,11 +111,10 @@ class Notebook(Product):
     ram = models.CharField(max_length=255, verbose_name='Оперативаня память')
     video = models.CharField(max_length=255, verbose_name='Видеокарта')
 
-
     def __str__(self):
         return '{} : {}'.format(self.category.name, self.title)
 
-    def get_absolut_url(self):
+    def get_absolute_url(self):
         return get_product_url(self, 'product_detail')
 
 
@@ -134,7 +130,7 @@ class Smartphone(Product):
     def __str__(self):
         return '{} : {}'.format(self.category.name, self.title)
 
-    def get_absolut_url(self):
+    def get_absolute_url(self):
         return get_product_url(self, 'product_detail')
 
 
@@ -156,7 +152,7 @@ class CartProduct(models.Model):
         return "Продукт: {} (для корзины)".format(self.content_object.title)
 
     def save(self, *args, **kwargs):
-        self.final_price = self.qty * self.product.price
+        self.final_price = self.qty * self.content_object.price
         super().save(*args, **kwargs)
 
 
@@ -187,7 +183,6 @@ class Customer(models.Model):
     user = models.ForeignKey(User, verbose_name="Пользователь", on_delete=models.CASCADE)
     phone = models.CharField(max_length=20, verbose_name="Номер телефона", null=True, blank=True)
     address = models.CharField(max_length=255, verbose_name="Адрес", null=True, blank=True)
-    # orders = models.ManyToManyField("Order", verbose_name="Заказы покупателя", related_name="related_order")
 
     def __str__(self):
         return "Покупатель: {} {}".format(self.user.first_name, self.user.last_name)

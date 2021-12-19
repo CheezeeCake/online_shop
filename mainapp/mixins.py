@@ -31,7 +31,7 @@ class CartMixin(View):
             if not cart:
                 cart = Cart.objects.create(owner=customer)
         else:
-            cart = cart.objects.filter(for_anonymous_user=True).first()
+            cart = Cart.objects.filter(for_anonymous_user=True).first()
             if not cart:
                 cart = Cart.objects.create(for_anonymous_user=True)
         self.cart = cart
