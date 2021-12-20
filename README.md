@@ -4,7 +4,6 @@
 
 3) Уставновим зависимости и сделаем миграции: 
    - pip install -r requirements.txt
-   - python manage.py makemigrations
    - python manage.py migrate
 
 2) Выполняем запуск серрвера: 
