@@ -1,11 +1,9 @@
-from django.db import models
 from django.contrib.auth import get_user_model
-from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-
-
 
 User = get_user_model()
 
@@ -40,12 +38,10 @@ class LatestProductsManager:
 
 
 class LatestProducts:
-
     objects = LatestProductsManager()
 
 
 class CategoryManager(models.Manager):
-
     CATEGORY_NAME_COUNT_NAME = {
         'Ноутбуки': 'notebook__count',
         'Смартфоны': 'smartphone__count'
@@ -55,8 +51,8 @@ class CategoryManager(models.Manager):
         return super().get_queryset()
 
     def get_categories_for_left_sidebar(self):
-        models = get_models_for_count('notebook', 'smartphone')
-        qs = list(self.get_queryset().annotate(*models))
+        model = get_models_for_count('notebook', 'smartphone')
+        qs = list(self.get_queryset().annotate(*model))
         data = [
             dict(name=c.name, url=c.get_absolute_url(), count=getattr(c, self.CATEGORY_NAME_COUNT_NAME[c.name]))
             for c in qs
@@ -77,7 +73,6 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-
     class Meta:
         abstract = True
 
@@ -96,7 +91,6 @@ class Product(models.Model):
 
 
 class Notebook(Product):
-
     diagonal = models.CharField(max_length=255, verbose_name='Диагональ')
     display_type = models.CharField(max_length=255, verbose_name='Тип дисплея')
     processor_freq = models.CharField(max_length=255, verbose_name='Процесссор')
@@ -111,7 +105,6 @@ class Notebook(Product):
 
 
 class Smartphone(Product):
-
     diagonal = models.CharField(max_length=255, verbose_name='Диагональ')
     display_type = models.CharField(max_length=255, verbose_name='Тип дисплея')
     resolution = models.CharField(max_length=255, verbose_name='Разрешение экрана')
@@ -127,7 +120,6 @@ class Smartphone(Product):
 
 
 class CartProduct(models.Model):
-
     user = models.ForeignKey("Customer", null=True, verbose_name="Покупатель", on_delete=models.CASCADE)
     cart = models.ForeignKey("Cart",
                              verbose_name="Корзина",
@@ -149,7 +141,6 @@ class CartProduct(models.Model):
 
 
 class Cart(models.Model):
-
     owner = models.ForeignKey("Customer", null=True, verbose_name="Владелец", on_delete=models.CASCADE)
     products = models.ManyToManyField(CartProduct, blank=True, related_name='related_cart')
     total_products = models.PositiveIntegerField(default=0)
@@ -162,7 +153,6 @@ class Cart(models.Model):
 
 
 class Customer(models.Model):
-
     user = models.ForeignKey(User, verbose_name="Пользователь", on_delete=models.CASCADE)
     phone = models.CharField(max_length=20, verbose_name="Номер телефона", null=True, blank=True)
     address = models.CharField(max_length=255, verbose_name="Адрес", null=True, blank=True)
@@ -173,7 +163,6 @@ class Customer(models.Model):
 
 
 class Order(models.Model):
-
     STATUS_NEW = 'new'
     STATUS_IN_PROGRESS = 'in_progress'
     STATUS_READY = 'is_ready'
@@ -194,7 +183,8 @@ class Order(models.Model):
         (BUYING_TYPE_DELIVERY, 'Доставка')
     )
 
-    customer = models.ForeignKey(Customer, verbose_name='Покупатель', related_name='related_orders', on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, verbose_name='Покупатель', related_name='related_orders',
+                                 on_delete=models.CASCADE)
     first_name = models.CharField(max_length=255, verbose_name='Имя')
     last_name = models.CharField(max_length=255, verbose_name='Фамилия')
     phone = models.CharField(max_length=255, verbose_name='Телефон')

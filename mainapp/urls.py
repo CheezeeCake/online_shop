@@ -1,4 +1,5 @@
 from django.urls import path
+
 from .views import (
     BaseView,
     ProductDetailView,
@@ -11,7 +12,6 @@ from .views import (
     MakeOrderView
 )
 
-
 urlpatterns = [
     path('', BaseView.as_view(), name='base'),
     path('products/<str:ct_model>/<str:slug>/', ProductDetailView.as_view(), name='product_detail'),
@@ -23,4 +23,3 @@ urlpatterns = [
     path('checkout/', CheckoutView.as_view(), name='checkout'),
     path('make-order/', MakeOrderView.as_view(), name='make_order'),
 ]
-

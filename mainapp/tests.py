@@ -1,15 +1,13 @@
-from django.test import TestCase, RequestFactory
-from django.contrib.auth import get_user_model
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.contrib.messages.storage.fallback import FallbackStorage
-
-
 from decimal import Decimal
 from unittest import mock
 
+from django.contrib.auth import get_user_model
+from django.contrib.messages.storage.fallback import FallbackStorage
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test import TestCase, RequestFactory
+
 from .models import Category, Notebook, CartProduct, Cart, Customer
 from .views import recalc_cart, AddToCartView, BaseView
-
 
 User = get_user_model()
 
@@ -18,7 +16,7 @@ class ShopTestCases(TestCase):
     def setUp(self) -> None:
         self.user = User.objects.create(username='testuser', password='password')
         self.category = Category.objects.create(name='Ноутбуки', slug='notebooks')
-        image = SimpleUploadedFile('notebook_img.jpg', content=b'', content_type='imega/jpg')
+        image = SimpleUploadedFile('notebook_img.jpg', content=b'', content_type='image/jpg')
         self.notebook = Notebook.objects.create(
             category=self.category,
             title='Test Notebook',
@@ -59,7 +57,7 @@ class ShopTestCases(TestCase):
 
     def test_mock_homepage(self):
         mock_data = mock.Mock(status_code=444)
-        with mock.patch('mainapp.views.BaseView.get', return_value=mock_data) as mock_data_:
+        with mock.patch('mainapp.views.BaseView.get', return_value=mock_data):
             factory = RequestFactory()
             request = factory.get('')
             request.user = self.user

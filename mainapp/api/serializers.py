@@ -1,10 +1,9 @@
 from rest_framework import serializers
 
-
 from ..models import Category, Smartphone, Notebook, Customer, Order
 
-class CategorySerializer(serializers.ModelSerializer):
 
+class CategorySerializer(serializers.ModelSerializer):
     name = serializers.CharField(required=True)
     slug = serializers.SlugField()
 
@@ -25,7 +24,6 @@ class BaseProductSerializer:
 
 
 class SmartphoneSerializer(BaseProductSerializer, serializers.ModelSerializer):
-
     diagonal = serializers.CharField(required=True)
     display_type = serializers.CharField(required=True)
     resolution = serializers.CharField(required=True)
@@ -51,17 +49,14 @@ class NotebookSerializer(BaseProductSerializer, serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Order
         fields = "__all__"
 
 
 class CustomerSerializer(serializers.ModelSerializer):
-
     orders = OrderSerializer(many=True)
 
     class Meta:
         model = Customer
         fields = "__all__"
-

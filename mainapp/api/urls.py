@@ -9,7 +9,6 @@ from .api_views import (
     CustomersListAPIView
 )
 
-
 urlpatterns = [
     path('categories/<str:id>/', CategoryAPIView.as_view(), name='categories_list'),
     path('smartphones/', SmartphoneListAPIView.as_view(), name='smartphones_list'),
