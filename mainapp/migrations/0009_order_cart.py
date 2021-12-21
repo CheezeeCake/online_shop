@@ -6,14 +6,19 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('mainapp', '0008_order_customer_orders'),
+        ("mainapp", "0008_order_customer_orders"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='order',
-            name='cart',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE,
-                                    to='mainapp.cart', verbose_name='Корзина'),
+            model_name="order",
+            name="cart",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="mainapp.cart",
+                verbose_name="Корзина",
+            ),
         ),
     ]

@@ -6,14 +6,18 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('mainapp', '0005_cart_for_anonymous_user_cart_in_order'),
+        ("mainapp", "0005_cart_for_anonymous_user_cart_in_order"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='cart',
-            name='owner',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='mainapp.customer',
-                                    verbose_name='Владелец'),
+            model_name="cart",
+            name="owner",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="mainapp.customer",
+                verbose_name="Владелец",
+            ),
         ),
     ]

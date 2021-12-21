@@ -5,15 +5,23 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('mainapp', '0002_smartphone_notebook'),
+        ("mainapp", "0002_smartphone_notebook"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='SomeModel',
+            name="SomeModel",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to='')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("image", models.ImageField(upload_to="")),
             ],
         ),
     ]

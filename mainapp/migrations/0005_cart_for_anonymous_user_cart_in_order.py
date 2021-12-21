@@ -5,18 +5,18 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('mainapp', '0004_delete_somemodel'),
+        ("mainapp", "0004_delete_somemodel"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='cart',
-            name='for_anonymous_user',
+            model_name="cart",
+            name="for_anonymous_user",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='cart',
-            name='in_order',
+            model_name="cart",
+            name="in_order",
             field=models.BooleanField(default=False),
         ),
     ]

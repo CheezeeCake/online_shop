@@ -9,9 +9,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = [
-            'id', 'name', 'slug'
-        ]
+        fields = ["id", "name", "slug"]
 
 
 class BaseProductSerializer:
@@ -33,7 +31,7 @@ class SmartphoneSerializer(BaseProductSerializer, serializers.ModelSerializer):
 
     class Meta:
         model = Smartphone
-        fields = '__all__'
+        fields = "__all__"
 
 
 class NotebookSerializer(BaseProductSerializer, serializers.ModelSerializer):
