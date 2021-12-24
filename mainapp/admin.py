@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.forms import ModelChoiceField
 
-from .models import *
+from mainapp.models import *
 
 
 class NotebookAdmin(admin.ModelAdmin):

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from ..models import Category, Smartphone, Notebook, Customer, Order
+from mainapp.models import Category, Smartphone, Notebook, Customer, Order
 
 
 class CategorySerializer(serializers.ModelSerializer):

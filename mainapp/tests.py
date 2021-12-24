@@ -6,8 +6,8 @@ from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, RequestFactory
 
-from .models import Category, Notebook, CartProduct, Cart, Customer
-from .views import recalc_cart, AddToCartView, BaseView
+from mainapp.models import Category, Notebook, CartProduct, Cart, Customer
+from mainapp.views import recalc_cart, AddToCartView, BaseView
 
 User = get_user_model()
 

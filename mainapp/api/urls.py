@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .api_views import (
+from mainapp.api.api_views import (
     CategoryAPIView,
     SmartphoneListAPIView,
     NotebookListAPIView,
@@ -8,6 +8,7 @@ from .api_views import (
     NotebookDetailAPIView,
     CustomersListAPIView,
 )
+
 
 urlpatterns = [
     path("categories/<str:id>/", CategoryAPIView.as_view(), name="categories_list"),

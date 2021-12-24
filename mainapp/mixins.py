@@ -1,7 +1,7 @@
 from django.views.generic import View
 from django.views.generic.detail import SingleObjectMixin
 
-from .models import Category, Cart, Customer, Notebook, Smartphone
+from mainapp.models import Category, Cart, Customer, Notebook, Smartphone
 
 
 class CategoryDetailMixin(SingleObjectMixin):

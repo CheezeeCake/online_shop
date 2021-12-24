@@ -4,17 +4,9 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from mainapp.utils import get_models_for_count, get_product_url
 
 User = get_user_model()
-
-
-def get_models_for_count(*model_names):
-    return [models.Count(model_name) for model_name in model_names]
-
-
-def get_product_url(obj, viewname):
-    ct_model = obj.__class__._meta.model_name
-    return reverse(viewname, kwargs={"ct_model": ct_model, "slug": obj.slug})
 
 
 class LatestProductsManager:
@@ -40,10 +32,6 @@ class LatestProductsManager:
                         reverse=True,
                     )
         return products
-
-
-class LatestProducts:
-    objects = LatestProductsManager()
 
 
 class CategoryManager(models.Manager):

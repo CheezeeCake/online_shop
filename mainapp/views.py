@@ -5,23 +5,23 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import DetailView, View
 
-from .forms import OrderForm
-from .mixins import CategoryDetailMixin, CartMixin
-from .models import (
+from mainapp.forms import OrderForm
+from mainapp.mixins import CategoryDetailMixin, CartMixin
+from mainapp.models import (
     Notebook,
     Smartphone,
     Category,
-    LatestProducts,
     Customer,
     CartProduct,
+    LatestProductsManager,
 )
-from .utils import recalc_cart
+from mainapp.utils import recalc_cart
 
 
 class BaseView(CartMixin, View):
     def get(self, request):
         categories = Category.objects.get_categories_for_left_sidebar()
-        products = LatestProducts.objects.get_products_for_main_page(
+        products = LatestProductsManager.get_products_for_main_page(
             "notebook", "smartphone", with_respect_to="notebook"
         )
         context = {"categories": categories, "products": products, "cart": self.cart}

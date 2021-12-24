@@ -10,13 +10,13 @@ from rest_framework.generics import (
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
-from .serializers import (
+from mainapp.api.serializers import (
     CategorySerializer,
     SmartphoneSerializer,
     NotebookSerializer,
     CustomerSerializer,
 )
-from ..models import Category, Smartphone, Notebook, Customer
+from mainapp.models import Category, Smartphone, Notebook, Customer
 
 
 class CategoryPagination(PageNumberPagination):
