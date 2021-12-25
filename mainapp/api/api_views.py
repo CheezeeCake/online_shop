@@ -72,4 +72,4 @@ class NotebookDetailAPIView(RetrieveAPIView):
 
 class CustomersListAPIView(ListAPIView):
     serializer_class = CustomerSerializer
-    queryset = Customer.objects.all()
+    queryset = Customer.objects.all().prefetch_related("orders")
